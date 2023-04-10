@@ -1,0 +1,13 @@
+name: MTProfiles
+version: '${project.version}'
+main: teammt.mtprofiles.main.MTProfiles
+api-version: 1.13
+authors: [ ecry ]
+description: A plugin which allows players to link social media to their Minecraft Account
+commands:
+  profile:
+    description: Command to view players' profiles
+    usage: /<command>
+  mtprofiles:
+    description: Command to manage the plugin
+    usage: /<command>
