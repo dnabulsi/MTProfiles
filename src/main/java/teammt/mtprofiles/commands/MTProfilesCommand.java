@@ -52,7 +52,7 @@ public class MTProfilesCommand extends Registerable {
     /**
      * Reload configurations currently doing the config reload
      */
-    @SubcommandInfo(subcommand = "reload", permission = "teammt.mtpolls.commands.reload")
+    @SubcommandInfo(subcommand = "reload", permission = "teammt.mtprofiles.reload")
     public void onReload(Player sender) {
         try {
             lib.getConfigurationAPI().reloadAll();
