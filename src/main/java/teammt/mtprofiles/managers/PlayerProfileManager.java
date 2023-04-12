@@ -34,9 +34,11 @@ public class PlayerProfileManager extends Registerable {
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
         PlayerProfile profile = getPlayerProfile(e.getPlayer().getUniqueId());
-        if (profile == null)
+        if (profile == null) {
             profile = new PlayerProfile(e.getPlayer(), lib);
+        }
         profile.setLastLoggedIn(Instant.now().getEpochSecond());
+        saveProfile(profile);
         List<String> list = (ArrayList<String>) lib.getConfigurationAPI().getConfig("config").get("force-to-follow");
         for (String cr : list) {
             OfflinePlayer offlinePlayer = null;
@@ -54,7 +56,7 @@ public class PlayerProfileManager extends Registerable {
             if (getPlayerProfile(targetUuid) == null) {
                 System.out.println("Cannot find player social profile for '" + cr + "'! Check config.yml.");
                 return;
-            } else if (!targetUuid.equals(e.getPlayer().getUniqueId()))
+            } else if (!targetUuid.equals(e.getPlayer().getUniqueId()) && (!profile.getFollowing().contains(targetUuid)))
                 profile.addFollowing(targetUuid);
         }
         saveProfile(profile);
